@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+  <head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="js/angular.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="js/angular-messages.min.js"></script>
+    <script src="places.js"></script>
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9Nrm32SCHMSsODvfFiVP7DMZAkPxVaQw&libraries=places"></script>
+   <script src="script.js"></script>
+  </head>
+
+  <body ng-controller="Ctrl">
+    <h1>Travel Location Search</h1>
+    <form name="formAutocomplete" novalidate>
+      <label for="addres">Search Your Location</label>
+      <input ng-model="vm.address.formattedAddress"
+        ng-autocomplete  details="vm.address" id="address" name="address" type="text" class="form-control"  />
+
+      <div ng-messages for="formAutocomplete['address'].$error" class="help-block error">
+          <div ng-message when="required">Please provide your address</div>
+          <div ng-message when="parse">Please select one of the suggested options</div>
+      </div>
+      
+      <hr />
+      
+      <pre>Information = {{ vm.address | json}}</pre>
+    </form>
+  </body>
+
+</html>
